@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" client="site" method="upgrade" version="4.0">
+
+    <name>HC IgPulse — Instagram Feed</name>
+
+    <author>Hirlei Carlos Pereira de Araújo</author>
+    <authorUrl>https://github.com/hirleicarlos/mod_hc_igpulse</authorUrl>
+    <authorEmail>prof.hirleicarlos@gmail.com</authorEmail>
+    <creationDate>2026-05-09</creationDate>
+    <copyright>(C) 2026 Hirlei Carlos Pereira de Araújo</copyright>
+    <license>MIT</license>
+
+    <version>1.0.0</version>
+    <description>MOD_HC_IGPULSE_XML_DESCRIPTION</description>
+
+    <namespace path="src">Joomla\Module\HcIgpulse</namespace>
+
+    <files>
+        <folder module="mod_hc_igpulse">services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <media destination="mod_hc_igpulse" folder="media">
+        <folder>css</folder>
+    </media>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/mod_hc_igpulse.ini</language>
+        <language tag="en-GB">language/en-GB/mod_hc_igpulse.sys.ini</language>
+        <language tag="pt-BR">language/pt-BR/mod_hc_igpulse.ini</language>
+        <language tag="pt-BR">language/pt-BR/mod_hc_igpulse.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+
+            <fieldset name="authentication" label="MOD_HC_IGPULSE_FIELDSET_AUTH">
+                <field
+                    name="access_token"
+                    type="text"
+                    label="MOD_HC_IGPULSE_FIELD_ACCESS_TOKEN_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_ACCESS_TOKEN_DESC"
+                    size="80"
+                    required="true"
+                    filter="string"
+                />
+                <field
+                    name="user_id"
+                    type="text"
+                    label="MOD_HC_IGPULSE_FIELD_USER_ID_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_USER_ID_DESC"
+                    size="40"
+                    required="true"
+                    filter="string"
+                />
+            </fieldset>
+
+            <fieldset name="content" label="MOD_HC_IGPULSE_FIELDSET_CONTENT">
+                <field
+                    name="media_type"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_MEDIA_TYPE_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_MEDIA_TYPE_DESC"
+                    default="ALL">
+                    <option value="ALL">MOD_HC_IGPULSE_MEDIA_ALL</option>
+                    <option value="IMAGE">MOD_HC_IGPULSE_MEDIA_POSTS</option>
+                    <option value="VIDEO">MOD_HC_IGPULSE_MEDIA_REELS</option>
+                </field>
+                <field
+                    name="count_fetch"
+                    type="number"
+                    label="MOD_HC_IGPULSE_FIELD_COUNT_FETCH_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_COUNT_FETCH_DESC"
+                    default="12"
+                    min="1"
+                    max="20"
+                    step="1"
+                    filter="integer"
+                />
+            </fieldset>
+
+            <fieldset name="layout_settings" label="MOD_HC_IGPULSE_FIELDSET_LAYOUT">
+
+                <field
+                    name="layout_style"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_LAYOUT_STYLE_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_LAYOUT_STYLE_DESC"
+                    default="carousel">
+                    <option value="carousel">MOD_HC_IGPULSE_LAYOUT_CAROUSEL</option>
+                    <option value="grid">MOD_HC_IGPULSE_LAYOUT_GRID</option>
+                    <option value="mosaic">MOD_HC_IGPULSE_LAYOUT_MOSAIC</option>
+                    <option value="strip">MOD_HC_IGPULSE_LAYOUT_STRIP</option>
+                </field>
+
+                <!-- Carousel: visible items per screen -->
+                <field
+                    name="count_desktop"
+                    type="number"
+                    label="MOD_HC_IGPULSE_FIELD_COUNT_DESKTOP_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_COUNT_DESKTOP_DESC"
+                    default="4"
+                    min="1"
+                    max="4"
+                    step="1"
+                    filter="integer"
+                    showon="layout_style:carousel"
+                />
+                <field
+                    name="count_mobile"
+                    type="number"
+                    label="MOD_HC_IGPULSE_FIELD_COUNT_MOBILE_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_COUNT_MOBILE_DESC"
+                    default="2"
+                    min="1"
+                    max="2"
+                    step="1"
+                    filter="integer"
+                    showon="layout_style:carousel"
+                />
+
+                <!-- Grid / Mosaic: columns -->
+                <field
+                    name="columns_desktop"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_COLUMNS_DESKTOP_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_COLUMNS_DESKTOP_DESC"
+                    default="3"
+                    showon="layout_style:grid,mosaic">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </field>
+                <field
+                    name="columns_mobile"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_COLUMNS_MOBILE_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_COLUMNS_MOBILE_DESC"
+                    default="1"
+                    showon="layout_style:grid,mosaic">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </field>
+
+                <!-- Common display options -->
+                <field
+                    name="show_caption"
+                    type="radio"
+                    label="MOD_HC_IGPULSE_FIELD_SHOW_CAPTION_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_SHOW_CAPTION_DESC"
+                    default="0"
+                    class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="show_likes"
+                    type="radio"
+                    label="MOD_HC_IGPULSE_FIELD_SHOW_LIKES_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_SHOW_LIKES_DESC"
+                    default="0"
+                    class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="open_in"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_OPEN_IN_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_OPEN_IN_DESC"
+                    default="instagram">
+                    <option value="lightbox">MOD_HC_IGPULSE_OPEN_LIGHTBOX</option>
+                    <option value="newtab">MOD_HC_IGPULSE_OPEN_NEWTAB</option>
+                    <option value="instagram">MOD_HC_IGPULSE_OPEN_INSTAGRAM</option>
+                </field>
+
+                <!-- Spacing between items -->
+                <field
+                    name="gap_enabled"
+                    type="radio"
+                    label="MOD_HC_IGPULSE_FIELD_GAP_ENABLED_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_GAP_ENABLED_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="gap_size"
+                    type="number"
+                    label="MOD_HC_IGPULSE_FIELD_GAP_SIZE_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_GAP_SIZE_DESC"
+                    default="8"
+                    min="2"
+                    max="40"
+                    step="2"
+                    filter="integer"
+                    showon="gap_enabled:1"
+                />
+
+                <!-- Image aspect ratio -->
+                <field
+                    name="aspect_ratio"
+                    type="list"
+                    label="MOD_HC_IGPULSE_FIELD_ASPECT_RATIO_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_ASPECT_RATIO_DESC"
+                    default="square">
+                    <option value="square">MOD_HC_IGPULSE_RATIO_SQUARE</option>
+                    <option value="landscape">MOD_HC_IGPULSE_RATIO_LANDSCAPE</option>
+                    <option value="portrait">MOD_HC_IGPULSE_RATIO_PORTRAIT</option>
+                    <option value="auto">MOD_HC_IGPULSE_RATIO_AUTO</option>
+                </field>
+
+                <field
+                    name="layout"
+                    type="modulelayout"
+                    label="JFIELD_ALT_LAYOUT_LABEL"
+                    class="form-select"
+                    validate="moduleLayout"
+                />
+
+            </fieldset>
+
+            <fieldset name="cache_settings" label="MOD_HC_IGPULSE_FIELDSET_CACHE">
+                <field
+                    name="cache_time"
+                    type="number"
+                    label="MOD_HC_IGPULSE_FIELD_CACHE_TIME_LABEL"
+                    description="MOD_HC_IGPULSE_FIELD_CACHE_TIME_DESC"
+                    default="60"
+                    min="5"
+                    max="1440"
+                    step="5"
+                    filter="integer"
+                />
+            </fieldset>
+
+        </fields>
+    </config>
+
+</extension>

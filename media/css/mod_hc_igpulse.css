@@ -1,0 +1,206 @@
+/* mod_hc_igpulse — Base styles
+   Shared across all layouts. No external framework dependencies.
+   ------------------------------------------------------------------ */
+
+.mod-hc-igpulse {
+    --hc-igpulse-gap:          0.5rem;
+    --hc-igpulse-radius:       0.25rem;
+    --hc-igpulse-cols-desktop: 3;
+    --hc-igpulse-cols-mobile:  1;
+    --hc-igpulse-nav-size:     2.5rem;
+    --hc-igpulse-badge-bg:     rgba(0, 0, 0, 0.55);
+    --hc-igpulse-caption-bg:   rgba(0, 0, 0, 0.65);
+    --hc-igpulse-overlay-bg:   rgba(0, 0, 0, 0.88);
+    --hc-igpulse-transition:   0.25s ease;
+
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+}
+
+.mod-hc-igpulse *,
+.mod-hc-igpulse *::before,
+.mod-hc-igpulse *::after {
+    box-sizing: inherit;
+}
+
+.mod-hc-igpulse .hc-igpulse-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mod-hc-igpulse .hc-igpulse-item__trigger {
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--hc-igpulse-radius);
+    overflow: hidden;
+}
+
+.mod-hc-igpulse .hc-igpulse-item__trigger:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+}
+
+.mod-hc-igpulse .hc-igpulse-item__figure {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--hc-igpulse-radius);
+    aspect-ratio: 1 / 1;
+    background: #f0f0f0;
+}
+
+[data-hc-ratio="landscape"] .hc-igpulse-item__figure { aspect-ratio: 16 / 9; }
+[data-hc-ratio="portrait"]  .hc-igpulse-item__figure { aspect-ratio: 4 / 5; }
+[data-hc-ratio="auto"]      .hc-igpulse-item__figure { aspect-ratio: auto; }
+
+.mod-hc-igpulse .hc-igpulse-item__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--hc-igpulse-transition);
+}
+
+[data-hc-ratio="auto"] .hc-igpulse-item__img {
+    height: auto;
+    object-fit: unset;
+}
+
+.mod-hc-igpulse .hc-igpulse-item__trigger:hover .hc-igpulse-item__img,
+.mod-hc-igpulse .hc-igpulse-item__trigger:focus-visible .hc-igpulse-item__img {
+    transform: scale(1.05);
+}
+
+.mod-hc-igpulse .hc-igpulse-item__badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--hc-igpulse-badge-bg);
+    color: #fff;
+    pointer-events: none;
+}
+
+.mod-hc-igpulse .hc-igpulse-item__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 0.75rem;
+    background: var(--hc-igpulse-caption-bg);
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    transform: translateY(100%);
+    transition: transform var(--hc-igpulse-transition);
+}
+
+.mod-hc-igpulse .hc-igpulse-item__trigger:hover .hc-igpulse-item__caption,
+.mod-hc-igpulse .hc-igpulse-item__trigger:focus-visible .hc-igpulse-item__caption {
+    transform: translateY(0);
+}
+
+.mod-hc-igpulse .hc-igpulse-item__likes {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--hc-igpulse-badge-bg);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 1rem;
+    pointer-events: none;
+}
+
+/* ── Lightbox ── */
+.hc-igpulse-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--hc-igpulse-overlay-bg);
+    padding: 1rem;
+}
+
+.hc-igpulse-lightbox[hidden] {
+    display: none;
+}
+
+.hc-igpulse-lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--hc-igpulse-transition);
+}
+
+.hc-igpulse-lightbox__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hc-igpulse-lightbox__figure {
+    margin: 0;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hc-igpulse-lightbox__img {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: var(--hc-igpulse-radius);
+}
+
+.hc-igpulse-lightbox__caption {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.85rem;
+    text-align: center;
+    max-width: 600px;
+}
+
+.hc-igpulse-lightbox__link {
+    margin-top: 0.5rem;
+    color: #fff;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    opacity: 0.7;
+    transition: opacity var(--hc-igpulse-transition);
+}
+
+.hc-igpulse-lightbox__link:hover {
+    opacity: 1;
+}

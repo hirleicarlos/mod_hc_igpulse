@@ -1,0 +1,58 @@
+/* mod_hc_igpulse — Carousel layout */
+
+.mod-hc-igpulse--carousel {
+    padding: 0 calc(var(--hc-igpulse-nav-size) + 0.5rem);
+}
+
+.mod-hc-igpulse--carousel .hc-igpulse-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.mod-hc-igpulse--carousel .hc-igpulse-track {
+    display: flex;
+    gap: var(--hc-igpulse-gap);
+    margin: 0;
+    padding: 0;
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.mod-hc-igpulse--carousel .hc-igpulse-item {
+    flex: 0 0 calc(
+        (100% - var(--hc-igpulse-gap) * (var(--hc-igpulse-cols-desktop) - 1)) /
+        var(--hc-igpulse-cols-desktop)
+    );
+}
+
+@media (max-width: 767px) {
+    .mod-hc-igpulse--carousel .hc-igpulse-item {
+        flex: 0 0 calc(
+            (100% - var(--hc-igpulse-gap) * (var(--hc-igpulse-cols-mobile) - 1)) /
+            var(--hc-igpulse-cols-mobile)
+        );
+    }
+}
+
+.mod-hc-igpulse--carousel .hc-igpulse-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--hc-igpulse-nav-size);
+    height: var(--hc-igpulse-nav-size);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--hc-igpulse-transition), opacity var(--hc-igpulse-transition);
+    z-index: 2;
+}
+
+.mod-hc-igpulse--carousel .hc-igpulse-nav:hover   { background: #f0f0f0; }
+.mod-hc-igpulse--carousel .hc-igpulse-nav:disabled { opacity: 0.3; cursor: default; }
+.mod-hc-igpulse--carousel .hc-igpulse-nav--prev    { left: 0; }
+.mod-hc-igpulse--carousel .hc-igpulse-nav--next    { right: 0; }

@@ -1,0 +1,28 @@
+/* mod_hc_igpulse — Strip layout
+   Horizontal scrollable strip with CSS scroll snap. */
+
+.mod-hc-igpulse--strip .hc-igpulse-strip-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.mod-hc-igpulse--strip .hc-igpulse-strip-wrapper::-webkit-scrollbar       { height: 4px; }
+.mod-hc-igpulse--strip .hc-igpulse-strip-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.mod-hc-igpulse--strip .hc-igpulse-strip {
+    display: flex;
+    gap: var(--hc-igpulse-gap);
+    margin: 0;
+    padding: 0 0 0.5rem;
+    scroll-snap-type: x mandatory;
+}
+
+.mod-hc-igpulse--strip .hc-igpulse-item {
+    flex: 0 0 240px;
+    scroll-snap-align: start;
+}

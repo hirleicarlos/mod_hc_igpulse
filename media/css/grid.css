@@ -1,0 +1,15 @@
+/* mod_hc_igpulse — Grid layout */
+
+.mod-hc-igpulse--grid .hc-igpulse-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--hc-igpulse-cols-desktop), 1fr);
+    gap: var(--hc-igpulse-gap);
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .mod-hc-igpulse--grid .hc-igpulse-grid {
+        grid-template-columns: repeat(var(--hc-igpulse-cols-mobile), 1fr);
+    }
+}

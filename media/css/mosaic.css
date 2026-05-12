@@ -1,0 +1,26 @@
+/* mod_hc_igpulse — Mosaic layout
+   First item spans 2 columns and 2 rows (featured). */
+
+.mod-hc-igpulse--mosaic .hc-igpulse-mosaic {
+    display: grid;
+    grid-template-columns: repeat(var(--hc-igpulse-cols-desktop), 1fr);
+    gap: var(--hc-igpulse-gap);
+    margin: 0;
+    padding: 0;
+}
+
+.mod-hc-igpulse--mosaic .hc-igpulse-item--featured {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+@media (max-width: 767px) {
+    .mod-hc-igpulse--mosaic .hc-igpulse-mosaic {
+        grid-template-columns: repeat(var(--hc-igpulse-cols-mobile), 1fr);
+    }
+
+    .mod-hc-igpulse--mosaic .hc-igpulse-item--featured {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
