@@ -13,6 +13,12 @@
     <version>1.0.0</version>
     <description>MOD_HC_IGPULSE_XML_DESCRIPTION</description>
 
+    <updateservers>
+        <server type="extension" priority="1" name="HC IgPulse — Instagram Feed">
+            https://hirleicarlos.github.io/updates/mod_hc_igpulse.xml
+        </server>
+    </updateservers>
+
     <namespace path="src">Joomla\Module\HcIgpulse</namespace>
 
     <files>
