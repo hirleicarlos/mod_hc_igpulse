@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="module" client="site" method="upgrade" version="4.0">
 
-    <name>HC IgPulse — Instagram Feed</name>
+    <name>HC IgPulse - Instagram Feed</name>
 
     <author>Hirlei Carlos Pereira de Araújo</author>
     <authorUrl>https://github.com/hirleicarlos/mod_hc_igpulse</authorUrl>
     <authorEmail>prof.hirleicarlos@gmail.com</authorEmail>
     <creationDate>2026-05-09</creationDate>
     <copyright>(C) 2026 Hirlei Carlos Pereira de Araújo</copyright>
-    <license>MIT</license>
+    <license>GNU General Public License version 2 or later</license>
 
     <version>1.0.0</version>
     <description>MOD_HC_IGPULSE_XML_DESCRIPTION</description>

@@ -4,7 +4,7 @@
 ![Joomla](https://img.shields.io/badge/Joomla-4%20%7C%205%20%7C%206-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple)
 ![API](https://img.shields.io/badge/API-Instagram%20Graph-orange)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-GPL%20v2%2B-green)
 
 ---
 

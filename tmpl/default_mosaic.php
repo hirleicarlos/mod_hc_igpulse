@@ -1,7 +1,12 @@
 <?php
 /**
- * @package    mod_hc_igpulse
- * @layout     default_mosaic
+ * @package     Joomla.Module
+ * @subpackage  mod_hc_igpulse
+ *
+ * @copyright   (C) 2026 Hirlei Carlos Pereira de Araújo
+ * @license     GNU General Public License version 2 or later
+ *
+ * @since       1.0.0
  */
 
 \defined('_JEXEC') or die;

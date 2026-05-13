@@ -4,7 +4,7 @@
  * @subpackage  mod_hc_igpulse
  *
  * @copyright   (C) 2026 Hirlei Carlos Pereira de Araújo
- * @license     MIT
+ * @license     GNU General Public License version 2 or later
  *
  * @since       1.0.0
  */
